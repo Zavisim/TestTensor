@@ -1,12 +1,5 @@
 import logging
 import time
-import pytest
-
-
-from selenium import webdriver
-from selenium.webdriver.chrome.webdriver import WebDriver
-
-from pages.contacts import ContactsPage
 
 
 def test_contacts_page_change_region(browser, contacts_page):

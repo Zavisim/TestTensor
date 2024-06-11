@@ -4,10 +4,6 @@ import time
 import pytest
 
 
-from selenium import webdriver
-from selenium.webdriver.chrome.webdriver import WebDriver
-
-from pages.contacts import ContactsPage
 from pages.tensor_about import TensorAbout
 from pages.tensor_main import TensorMain
 
