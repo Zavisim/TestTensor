@@ -1,6 +1,8 @@
 import time
 
 import pytest
+from selenium.webdriver.chrome import webdriver
+from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
@@ -23,11 +25,11 @@ class ContactsPage(BasePage):
         return self.driver.find_elements(By.CSS_SELECTOR, '.sbisru-Contacts-List__name')
 
     @property
-    def change_req(self):
+    def region_butt(self):
         return self.driver.find_element(By.CSS_SELECTOR, '.sbis_ru-Region-Chooser__text')
 
     def change_region(self, region_name):
-        self.change_req.click()
+        self.region_butt.click()
         time.sleep(2)
         region = self.driver.find_element(By.CSS_SELECTOR, f'.sbis_ru-Region-Panel__item [title="'
                                                            f'{region_name}"]')

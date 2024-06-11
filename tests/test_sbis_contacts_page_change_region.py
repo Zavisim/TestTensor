@@ -10,18 +10,18 @@ from pages.contacts import ContactsPage
 
 
 @pytest.fixture
-def brawser() -> WebDriver:
+def browser() -> WebDriver:
     driver = webdriver.Chrome()
     yield driver
     driver.quit()
 
 
 @pytest.fixture
-def contacts_page(brawser) -> ContactsPage:
-    return ContactsPage(brawser)
+def contacts_page(browser) -> ContactsPage:
+    return ContactsPage(browser)
 
 
-def test_second(brawser, contacts_page):
+def test_contacts_page_change_region(browser, contacts_page):
     contacts_page.open()
     time.sleep(2)
     assert contacts_page.region.text == 'Ярославская обл.'
@@ -35,8 +35,8 @@ def test_second(brawser, contacts_page):
     new_partners = contacts_page.get_partner_names()
 
     assert old_partners != new_partners
-    assert '41-kamchatskij-kraj' in brawser.current_url
-    assert 'Камчатский край' in brawser.title
+    assert '41-kamchatskij-kraj' in browser.current_url
+    assert 'Камчатский край' in browser.title
 
 
 

@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 
 
 @pytest.fixture
-def brawser() -> WebDriver:
+def browser() -> WebDriver:
     driver = webdriver.Chrome()
     yield driver
     driver.quit()

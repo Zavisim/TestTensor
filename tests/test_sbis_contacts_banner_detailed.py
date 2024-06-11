@@ -13,26 +13,33 @@ from pages.tensor_main import TensorMain
 
 
 @pytest.fixture
-def brawser() -> WebDriver:
+def browser() -> WebDriver:
     driver = webdriver.Chrome()
     yield driver
     driver.quit()
 
 
 @pytest.fixture
-def contacts_page(brawser) -> ContactsPage:
-    return ContactsPage(brawser)
+def contacts_page(browser) -> ContactsPage:
+    return ContactsPage(browser)
 
 
-def test_something(brawser, contacts_page):
-    tensor_main = TensorMain(brawser)
-    tensor_about = TensorAbout(brawser)
+@pytest.fixture
+def tensor_main(browser) -> TensorMain:
+    return TensorMain(browser)
 
+
+@pytest.fixture
+def tensor_about(browser) -> TensorAbout:
+    return TensorAbout(browser)
+
+
+def test_contacts_banner_detailed(browser, contacts_page, tensor_main, tensor_about):
     contacts_page.open()
     contacts_page.banner.click()
     time.sleep(2)
     contacts_page.switch_tab()
-    assert brawser.current_url == tensor_main.URL
+    assert browser.current_url == tensor_main.URL
 
     assert tensor_main.human_block_title.text == 'Сила в людях'
 
@@ -40,7 +47,7 @@ def test_something(brawser, contacts_page):
 
     tensor_main.human_block_more_button.click()
     time.sleep(2)
-    assert brawser.current_url == tensor_about.URL
+    assert browser.current_url == tensor_about.URL
 
     sizes = tensor_about.get_work_block_images_sizes()
 
