@@ -9,18 +9,6 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 from pages.contacts import ContactsPage
 
 
-@pytest.fixture
-def browser() -> WebDriver:
-    driver = webdriver.Chrome()
-    yield driver
-    driver.quit()
-
-
-@pytest.fixture
-def contacts_page(browser) -> ContactsPage:
-    return ContactsPage(browser)
-
-
 def test_contacts_page_change_region(browser, contacts_page):
     contacts_page.open()
     time.sleep(2)

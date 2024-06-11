@@ -1,6 +1,8 @@
 import pytest
-from selenium.webdriver.chrome import webdriver
+from selenium import webdriver
 from selenium.webdriver.chrome.webdriver import WebDriver
+
+from pages.contacts import ContactsPage
 
 
 @pytest.fixture
@@ -8,3 +10,8 @@ def browser() -> WebDriver:
     driver = webdriver.Chrome()
     yield driver
     driver.quit()
+
+
+@pytest.fixture
+def contacts_page(browser) -> ContactsPage:
+    return ContactsPage(browser)

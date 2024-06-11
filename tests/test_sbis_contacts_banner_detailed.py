@@ -13,18 +13,6 @@ from pages.tensor_main import TensorMain
 
 
 @pytest.fixture
-def browser() -> WebDriver:
-    driver = webdriver.Chrome()
-    yield driver
-    driver.quit()
-
-
-@pytest.fixture
-def contacts_page(browser) -> ContactsPage:
-    return ContactsPage(browser)
-
-
-@pytest.fixture
 def tensor_main(browser) -> TensorMain:
     return TensorMain(browser)
 
